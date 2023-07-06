@@ -5,6 +5,12 @@ VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeePayrollAppMVC", "EmployeePayrollAppMVC\EmployeePayrollAppMVC.csproj", "{021557CC-2AAC-4EA4-B48F-AC6F9A768A53}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryLayer", "RepositoryLayer\RepositoryLayer.csproj", "{3143B918-B364-4F8A-A651-611A86C8CB1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{AE20FF40-2715-4FD8-A0A3-DD5C7C9A4780}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLayer", "CommonLayer\CommonLayer.csproj", "{F60D865D-0648-442E-A3AB-8EBDC1EA76B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{021557CC-2AAC-4EA4-B48F-AC6F9A768A53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{021557CC-2AAC-4EA4-B48F-AC6F9A768A53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{021557CC-2AAC-4EA4-B48F-AC6F9A768A53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3143B918-B364-4F8A-A651-611A86C8CB1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3143B918-B364-4F8A-A651-611A86C8CB1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3143B918-B364-4F8A-A651-611A86C8CB1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3143B918-B364-4F8A-A651-611A86C8CB1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE20FF40-2715-4FD8-A0A3-DD5C7C9A4780}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE20FF40-2715-4FD8-A0A3-DD5C7C9A4780}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE20FF40-2715-4FD8-A0A3-DD5C7C9A4780}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE20FF40-2715-4FD8-A0A3-DD5C7C9A4780}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F60D865D-0648-442E-A3AB-8EBDC1EA76B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F60D865D-0648-442E-A3AB-8EBDC1EA76B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F60D865D-0648-442E-A3AB-8EBDC1EA76B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F60D865D-0648-442E-A3AB-8EBDC1EA76B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

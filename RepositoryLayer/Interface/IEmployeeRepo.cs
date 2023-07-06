@@ -1,0 +1,13 @@
+﻿using CommonLayer.Model;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace RepositoryLayer.Interface
+{
+    public interface IEmployeeRepo
+    {
+        public EmpRegModel Register(EmpRegModel model);
+        public IEnumerable<EmpRegModel> GetAllEmployees();
+    }
+}
