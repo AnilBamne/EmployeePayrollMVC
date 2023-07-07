@@ -110,7 +110,7 @@ namespace RepositoryLayer.Service
             {
                 using (this.connection)
                 {
-                    SqlCommand cmd = new SqlCommand("spAddEmployee", connection);
+                    SqlCommand cmd = new SqlCommand("spUpdateEmployee", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("EmpId", model.Id);
                     cmd.Parameters.AddWithValue("@Name", model.Name);
