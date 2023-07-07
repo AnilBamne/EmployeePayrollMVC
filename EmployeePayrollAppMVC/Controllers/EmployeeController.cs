@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Interface;
+using BusinessLayer.Service;
 using CommonLayer.Model;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -56,6 +57,43 @@ namespace EmployeePayrollAppMVC.Controllers
             {
                 throw ex;
             }
+        }
+
+        /// <summary>
+        /// Update emp details
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            EmpRegModel employee = employeeBL.GetEmpDetails(id);
+
+            if (employee == null)
+            {
+                return NotFound();
+            }
+            return View(employee);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, [Bind] EmpRegModel employee)
+        {
+            if (id != employee.Id)
+            {
+                return NotFound();
+            }
+            if (ModelState.IsValid)
+            {
+                employeeBL.UpdateEmployee(employee);
+                return RedirectToAction("GetAllEmployees");
+            }
+            return View(employee);
         }
     }
 }
