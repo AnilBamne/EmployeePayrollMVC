@@ -111,5 +111,29 @@ namespace EmployeePayrollAppMVC.Controllers
             }
             return View(employee);
         }
+
+        [HttpGet]
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            EmpRegModel employee = employeeBL.GetEmpDetails(id);
+
+            if (employee == null)
+            {
+                return NotFound();
+            }
+            return View(employee);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            employeeBL.DeleteEmployee(id);
+            return RedirectToAction("GetAllEmployees");
+        }
     }
 }

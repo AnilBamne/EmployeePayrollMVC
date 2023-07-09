@@ -53,5 +53,9 @@ namespace BusinessLayer.Service
         {
             return employeeRepo.GetEmpDetails(Id);
         }
+        public void DeleteEmployee(int id)
+        {
+            employeeRepo.DeleteEmployee(id);
+        }
     }
 }

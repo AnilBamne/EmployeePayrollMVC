@@ -3,10 +3,18 @@
 @{
     ViewData["Title"] = "Register";
 }
+<div class="logo-content">
+    <div>
+        <img class="logo-img" src="Assets/logo.png" />
+    </div>
+    <div>
+        <p class="text text-1">EMPLOYEE</p>
+        <p class="text text-2">PAYROLL</p>
+    </div>
+</div>
+<h1 class="h1">REGISTER</h1>
 
-<h1>Register</h1>
-
-<h4>EmpRegModel</h4>
+@*<h4>ADD NEW EMPLOYEE</h4>*@
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -24,7 +32,17 @@
             </div>
             <div class="form-group">
                 <label asp-for="ProfileImage" class="control-label"></label>
-                <input asp-for="ProfileImage" class="form-control" />
+                @*<input asp-for="ProfileImage" class="form-control" />*@
+                <div>
+                    @Html.RadioButtonFor(model => model.ProfileImage, "~/Assets/male1.png")
+                    <img class="profile-image-1" src="~/Assets/male1.png"/>
+                    @Html.RadioButtonFor(model => model.ProfileImage, "~/Assets/male2.png")
+                    <img class="profile-image-1" src="~/Assets/male2.png"/>
+                    @Html.RadioButtonFor(model => model.ProfileImage, "~/Assets/female1.png")
+                    <img class="profile-image-1" src="~/Assets/female1.png"/>
+                    @Html.RadioButtonFor(model => model.ProfileImage, "~/Assets/female2.png")
+                    <img class="profile-image-1" src="~/Assets/female2.png" />
+                </div>
                 <span asp-validation-for="ProfileImage" class="text-danger"></span>
             </div>
             <div class="form-group">

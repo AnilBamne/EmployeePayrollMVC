@@ -3,11 +3,19 @@
 @{
     ViewData["Title"] = "GetAllEmployees";
 }
+<div class="logo-content">
+    <div>
+        <img class="logo-img" src="Assets/logo.png" />
+    </div>
+    <div>
+        <p class="text text-1">EMPLOYEE</p>
+        <p class="text text-2">PAYROLL</p>
+    </div>
+</div>
+<h1 class="h1">LIST OF EMPLOYEES</h1>
 
-<h1>GetAllEmployees</h1>
-
-<p>
-    <a asp-action="Register">Create New</a>
+<p style="margin-bottom:0px">
+    <a asp-action="Register" class="add-btn"> + Add Employee</a>
 </p>
 <table class="table">
     <thead>
@@ -49,7 +57,8 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProfileImage)
+                @*@Html.DisplayFor(modelItem => item.ProfileImage)*@
+                <img src="@Url.Content(item.ProfileImage)"/>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Gender)
@@ -66,7 +75,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Notes)
             </td>
-            <td>
+            <td style="width:180px">
                 @Html.ActionLink("Edit", "Edit", new {  id=item.Id  }) |
                     @Html.ActionLink("Details", "Details", new {  id=item.Id  }) |
                     @Html.ActionLink("Delete", "Delete", new {  id=item.Id  })

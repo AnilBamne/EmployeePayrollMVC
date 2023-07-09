@@ -4,9 +4,18 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<div class="logo-content">
+    <div>
+        <img class="logo-img" src="Assets/logo.png" />
+    </div>
+    <div>
+        <p class="text text-1">EMPLOYEE</p>
+        <p class="text text-2">PAYROLL</p>
+    </div>
+</div>
+<h1 class="h1">EDIT EMPLOYEE DETAILS</h1>
 
-<h4>EmpRegModel</h4>
+@*<h4>EmpRegModel</h4>*@
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -24,17 +33,40 @@
             </div>
             <div class="form-group">
                 <label asp-for="ProfileImage" class="control-label"></label>
-                <input asp-for="ProfileImage" class="form-control" />
+                @*<input asp-for="ProfileImage" class="form-control" />*@
+                <div>
+                    @Html.RadioButtonFor(model => model.ProfileImage, "~/Assets/male1.png")
+                    <img class="profile-image-1" src="~/Assets/male1.png" />
+                    @Html.RadioButtonFor(model => model.ProfileImage, "~/Assets/male2.png")
+                    <img class="profile-image-1" src="~/Assets/male2.png" />
+                    @Html.RadioButtonFor(model => model.ProfileImage, "~/Assets/female1.png")
+                    <img class="profile-image-1" src="~/Assets/female1.png" />
+                    @Html.RadioButtonFor(model => model.ProfileImage, "~/Assets/female2.png")
+                    <img class="profile-image-1" src="~/Assets/female2.png" />
+                </div>
                 <span asp-validation-for="ProfileImage" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Gender" class="control-label"></label>
+                @*<label asp-for="Gender" class="control-label"></label>
                 <input asp-for="Gender" class="form-control" />
-                <span asp-validation-for="Gender" class="text-danger"></span>
+                <span asp-validation-for="Gender" class="text-danger"></span>*@
+                Male
+                @Html.RadioButtonFor(model => model.Gender, "Male")
+                Female
+                @Html.RadioButtonFor(model => model.Gender, "Female")
             </div>
             <div class="form-group">
                 <label asp-for="Department" class="control-label"></label>
-                <input asp-for="Department" class="form-control" />
+                @*<input asp-for="Department" class="form-control" />*@
+                <select class="form-control" id="Department" name="Department">
+                    <option>Select Department</option>
+                    <option>HR</option>
+                    <option>Sales</option>
+                    <option>Marketing</option>
+                    <option>Operations</option>
+                    <option>Dev</option>
+                    <option>QA</option>
+                </select>
                 <span asp-validation-for="Department" class="text-danger"></span>
             </div>
             <div class="form-group">

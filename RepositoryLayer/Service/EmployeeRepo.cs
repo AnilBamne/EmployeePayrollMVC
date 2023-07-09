@@ -176,5 +176,91 @@ namespace RepositoryLayer.Service
                 this.connection.Close();
             }
         }
+
+        //Write a method to add and update in mvc. If empid exist update the data else add the data.
+        public EmpRegModel GetById(int id)
+        {
+            EmpRegModel employee = new EmpRegModel();
+            using (connection)
+            {
+                string sqlQuery = "SELECT * FROM EmployeeTable WHERE Id= " + id;
+                SqlCommand cmd = new SqlCommand(sqlQuery, connection);
+
+                connection.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                if (rdr.HasRows)
+                {
+                    while (rdr.Read())
+                    {
+                        employee.Id = Convert.ToInt32(rdr["Id"]);
+                        employee.Name = rdr["Name"].ToString();
+                        employee.ProfileImage = rdr["ProfileImage"].ToString();
+                        employee.Gender = rdr["Gender"].ToString();
+                        employee.Department = rdr["Department"].ToString();
+                        employee.Salary = Convert.ToInt32(rdr["Salary"]);
+                        employee.StartDate = Convert.ToDateTime(rdr["StartDate"]);
+                        employee.Notes = rdr["Notes"].ToString();
+                        //If employee id is present then update the info
+                        if(employee != null)
+                        {
+                            SqlCommand command = new SqlCommand("spUpdateEmployee", connection);
+                            command.CommandType = CommandType.StoredProcedure;
+                            command.Parameters.AddWithValue("EmpId", employee.Id);
+                            command.Parameters.AddWithValue("@Name", employee.Name);
+                            command.Parameters.AddWithValue("@ProfileImage", employee.ProfileImage);
+                            command.Parameters.AddWithValue("@Gender", employee.Gender);
+                            command.Parameters.AddWithValue("@Department", employee.Department);
+                            command.Parameters.AddWithValue("@Salary", employee.Salary);
+                            command.Parameters.AddWithValue("@StartDate", employee.StartDate);
+                            command.Parameters.AddWithValue("@Notes", employee.Notes);
+                            connection.Open();
+                            var count = cmd.ExecuteNonQuery();
+                            if (count != 0)
+                            {
+                                return employee;
+                            }
+                            return null;
+                        }
+                    }
+                }
+                else
+                {
+                    //records not found then create new record
+                    SqlCommand command = new SqlCommand("spAddEmployee", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Name", employee.Name);
+                    command.Parameters.AddWithValue("@ProfileImage", employee.ProfileImage);
+                    command.Parameters.AddWithValue("@Gender", employee.Gender);
+                    command.Parameters.AddWithValue("@Department", employee.Department);
+                    command.Parameters.AddWithValue("@Salary", employee.Salary);
+                    command.Parameters.AddWithValue("@StartDate", employee.StartDate);
+                    command.Parameters.AddWithValue("@Notes", employee.Notes);
+                    connection.Open();
+                    var count = cmd.ExecuteNonQuery();
+                    if (count != 0)
+                    {
+                        return employee;
+                    }
+                    return null;
+                }
+            }
+            connection.Close();
+            return employee;
+        }
+        //To Delete the record on a particular employee    
+        public void DeleteEmployee(int id)
+        {
+            using (connection)
+            {
+                SqlCommand cmd = new SqlCommand("spDeleteEmployee", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@EmpId", id);
+
+                connection.Open();
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
     }
 }
