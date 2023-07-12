@@ -30,6 +30,13 @@ namespace EmployeePayrollAppMVC
             services.AddControllersWithViews();
             services.AddTransient<IEmployeeRepo, EmployeeRepo>();
             services.AddTransient<IEmployeeBL, EmployeeBL>();
+            services.AddTransient<IAdminBL,AdminBL>();
+            services.AddTransient<IAdminRepo, AdminRepo>();
+            //Adding session
+            services.AddSession(option =>
+            {
+                option.IdleTimeout=TimeSpan.FromMinutes(120);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,7 +54,8 @@ namespace EmployeePayrollAppMVC
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            //middleware for session
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();

@@ -250,15 +250,27 @@ namespace RepositoryLayer.Service
         //To Delete the record on a particular employee    
         public void DeleteEmployee(int id)
         {
-            using (connection)
+            try
             {
-                SqlCommand cmd = new SqlCommand("spDeleteEmployee", connection);
-                cmd.CommandType = CommandType.StoredProcedure;
+                using (connection)
+                {
+                    SqlCommand cmd = new SqlCommand("spDeleteEmployee", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@EmpId", id);
+                    cmd.Parameters.AddWithValue("@EmpId", id);
 
-                connection.Open();
-                cmd.ExecuteNonQuery();
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
                 connection.Close();
             }
         }
