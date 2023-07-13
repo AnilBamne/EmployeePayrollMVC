@@ -57,5 +57,9 @@ namespace BusinessLayer.Service
         {
             employeeRepo.DeleteEmployee(id);
         }
+        public int EmployeeLogin(LoginModel model)
+        {
+            return employeeRepo.EmployeeLogin(model);
+        }
     }
 }

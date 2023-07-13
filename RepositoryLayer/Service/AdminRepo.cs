@@ -9,7 +9,7 @@ using System.Text;
 
 namespace RepositoryLayer.Service
 {
-    public class AdminRepo: IAdminRepo
+    public class AdminRepo:IAdminRepo
     {
         private readonly IConfiguration configuration;
         private readonly SqlConnection connection = new SqlConnection();

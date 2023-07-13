@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Interface;
 using BusinessLayer.Service;
 using CommonLayer.Model;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -99,12 +100,13 @@ namespace EmployeePayrollAppMVC.Controllers
         [HttpGet]
         public IActionResult Details(int? id)
         {
+            id = HttpContext.Session.GetInt32("UseerId");
             if (id == null)
             {
                 return NotFound();
             }
             EmpRegModel employee = employeeBL.GetEmpDetails(id);
-
+            TempData["EmpName"] = employee.Name;
             if (employee == null)
             {
                 return NotFound();
@@ -134,6 +136,30 @@ namespace EmployeePayrollAppMVC.Controllers
         {
             employeeBL.DeleteEmployee(id);
             return RedirectToAction("GetAllEmployees");
+        }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(LoginModel model)
+        {
+            var result = employeeBL.EmployeeLogin(model);
+            HttpContext.Session.SetInt32("UseerId", result);
+            if (result != 0)
+            {
+                ViewBag.Message = "Login succesfull";
+                //Console.WriteLine("Logged in");
+                return RedirectToAction("Details");
+            }
+            else
+            {
+                ViewBag.Message = "Login Failed : Please enter valid user id and user name";
+                return View(model);
+            }
         }
     }
 }

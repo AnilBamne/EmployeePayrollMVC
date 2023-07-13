@@ -3,10 +3,11 @@
 @{
     ViewData["Title"] = "Login";
 }
+<partial name="_Header" />
 
-<h1>Login</h1>
+<h1 class="h1">Employee Login Page</h1>
 
-<h4>LoginModel</h4>
+@*<h4>LoginModel</h4>*@
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -25,12 +26,21 @@
             <div class="form-group">
                 <input type="submit" value="Login" class="btn btn-primary" />
             </div>
+
+            @if (!string.IsNullOrEmpty(ViewBag.Message))
+            {
+                <script type="text/javascript">
+                    alert("@ViewBag.Message");
+                </script>
+            }
+            
+           
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Home">Back to List</a>
+    <a asp-action="GetAllEmployees">Back to List</a>
 </div>
 
 @section Scripts {

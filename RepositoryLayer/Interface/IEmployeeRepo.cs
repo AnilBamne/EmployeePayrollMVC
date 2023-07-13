@@ -12,5 +12,6 @@ namespace RepositoryLayer.Interface
         public EmpRegModel UpdateEmployee(EmpRegModel model);
         public EmpRegModel GetEmpDetails(int? Id);
         public void DeleteEmployee(int id);
+        public int EmployeeLogin(LoginModel model);
     }
 }

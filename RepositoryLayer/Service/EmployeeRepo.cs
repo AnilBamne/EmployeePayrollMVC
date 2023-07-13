@@ -274,5 +274,40 @@ namespace RepositoryLayer.Service
                 connection.Close();
             }
         }
+
+        public int EmployeeLogin(LoginModel model)
+        {
+            try
+            {
+                using (connection)
+                {
+                    SqlCommand command = new SqlCommand("spEmployeLogin", connection)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+                    command.Parameters.AddWithValue("@Id", model.Id);
+                    command.Parameters.AddWithValue("@Name", model.Name);
+
+                    connection.Open();
+                    SqlDataReader rdr = command.ExecuteReader();
+                    if (rdr.HasRows)
+                    {
+                        while (rdr.Read())
+                        {
+                            int AndminId = Convert.ToInt32(rdr["Id"]);
+                            // rdr.GetInt32(0);
+                            return AndminId;
+                        }
+                    }
+                    return 0;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { connection.Close(); }
+        }
     }
 }

@@ -12,6 +12,11 @@
         <p class="text text-2">PAYROLL</p>
     </div>
 </div>
+@*@if (TempData["EmpName"]! = null)
+{
+    <p> @TempData["EmpName"] </p>
+}*@
+<p> @TempData["EmpName"] </p>
 <h1 class="h1">DETAILS</h1>
 
 <div class="details-page">
@@ -71,5 +76,5 @@
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    <a asp-action="GetAllEmployees">Back to List</a>
+    <a asp-action="Login">Back to List</a>
 </div>
